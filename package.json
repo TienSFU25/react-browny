@@ -1,8 +1,8 @@
 {
-  "name": "basic-test-webpack",
+  "name": "neu",
   "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Tien Vu",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^0.14.55",
@@ -15,7 +15,6 @@
     "css-loader": "^0.28.1",
     "file-loader": "^0.11.1",
     "node-sass": "^4.5.2",
-    "open": "0.0.5",
     "raw-loader": "^0.5.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
@@ -25,8 +24,6 @@
     "url-loader": "^0.5.8"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.0.0-beta.17",
-    "source-map-loader": "^0.1.5",
     "typescript": "^2.1.4",
     "webpack": "1.13.0"
   }
