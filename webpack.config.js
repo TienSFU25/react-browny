@@ -9,14 +9,18 @@ module.exports = {
     devtool: "source-map",
 
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
 
     module: {
         loaders: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
+            {test: /\.js$/, include: './src', loaders: ['babel-loader?presets[]=es2015']},
+            {test: /\.tsx?$/, loader: 'babel-loader?presets[]=react!ts-loader'},
+            {test: /(\.css)$/, loaders: ['style', 'css']},
+            {test: /(\.scss)$/, loaders: ['style', 'css', 'sass']},
+            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
+            {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
+            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'}
         ],
 
         preLoaders: [

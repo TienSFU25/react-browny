@@ -1,0 +1,1237 @@
+$colorForeground: #000;
+$colorBackground: #FFF;
+$colorActive: rgb(0, 95, 160);
+$colorHyperlink: $colorActive;
+$colorPassive: rgba(43, 43, 43, 0.7);
+$globalLeft: left;
+$cardOutlineColor: rgb(225, 225, 225);
+$cardTransitionInterval: 0.1s;
+$gridStepX: 32.4rem;
+$gridStepY: 18.7rem;
+@font-face {
+    font-family: 'PS_G';
+    src: url('./static/PrimeSymbol_Global.eot');
+    /* IE9 Compat Modes */
+    src: url('./static/PrimeSymbol_Global.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('./static/PrimeSymbol_Global.woff') format('woff'), /* Pretty Modern Browsers */
+    url('./static/PrimeSymbol_Global.ttf') format('truetype')/* Safari, Android, iOS */
+}
+
+@mixin typeBase() {
+    font-family: "Segoe UI", "Segoe WP", Arial, Sans-Serif;
+    font-size: 1.4rem;
+    color: $colorForeground;
+}
+
+@mixin feedbackTween($prop) {
+    -webkit-transition: #{$prop} 0.2s ease-out;
+    transition: #{$prop} 0.2s ease-out;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+@mixin typeTitle() {
+    color: rgb(51, 51, 51);
+    font-family: "Segoe UI Semilight", "Segoe WP Semilight", "Segoe WP", "Segoe UI", Arial, Sans-Serif;
+    font-size: 2.8rem;
+    line-height: 3.4rem;
+}
+
+@mixin typeHeading() {
+    font-family: "Segoe UI Semilight", "Segoe WP Semilight", "Segoe WP", "Segoe UI", Arial, Sans-Serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+}
+
+@mixin typeKicker() {
+    @include typeBase();
+    font-size: 1.3rem;
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@mixin typeSmall () {
+    @include typeBase();
+    line-height: 2.4rem;
+    font-size: 1.3rem;
+    color: $colorPassive;
+}
+
+@mixin noBreakInside() {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+@mixin baseCard() {
+    width: 30rem;
+    height: 35rem;
+}
+
+@mixin baseCard1u() {
+    height: 16.3rem;
+}
+
+@mixin baseCard3u() {
+    height: 53.7rem;
+}
+
+@mixin baseCard4u() {
+    height: 72.4rem;
+}
+
+@mixin baseCardWide2u() {
+    width: 62.4rem;
+}
+
+@mixin baseCardStretch2u() {
+    width: 94.8rem;
+}
+
+@mixin baseCardFull2u() {
+    width: 127.2rem;
+}
+
+@mixin baseCardImmersive2u() {
+    width: 127.2rem;
+    height: 53.7rem;
+}
+
+html {
+    font-size: calc(1em*0.625);
+    background: $colorBackground;
+    color: $colorForeground;
+}
+
+body {
+    @include typeBase();
+    background: #F2F2F2;
+    margin: 0;
+    padding: 0;
+    padding-top: 6rem;
+    &>h1 {
+        display: none;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4.2rem;
+    background: darken($colorBackground, 5%);
+    z-index: 200000;
+}
+
+body.scrolled {
+    header {
+        @include feedbackTween(all);
+        box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+    }
+}
+
+header>.container {
+    margin: 0 auto;
+    text-align: $globalLeft;
+    width: 127.2rem;
+    position: relative;
+    /* h1 {
+        @include typeTitle();
+        text-align: left;
+        width: 40%;
+        background: white;
+        height: $gridStepY * 0.4;
+        margin: 0;
+        margin-left: 8%;
+        padding: 2rem 2rem;
+        box-sizing: border-box;
+    } */
+    .brand {
+        @include typeHeading();
+        height: 4.2rem;
+        width: $gridStepX;
+        padding-top: 0.3rem;
+        &::before {
+            font-family: "PS_G";
+            content: "";
+            font-size: 3.6rem;
+        }
+    }
+    .ms-search-form {
+        position: absolute;
+        left: $gridStepX;
+        top: 0;
+        width: $gridStepX * 2 - 2.4rem;
+        &:hover,
+        &:focus,
+        &:active {
+            box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.2);
+        }
+        #ms-search {
+            @include typeBase();
+            height: 4.2rem;
+            padding: 0 1.5rem;
+            width: $gridStepX * 2 - 2.4rem;
+            outline: none;
+            border: none;
+        }
+        #ms-search-submit {
+            @include typeBase();
+            background: #feb632;
+            height: 4.2rem;
+            width: 4.2rem;
+            border: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+        #ms-search-status {
+            display: none;
+        }
+        .ms-search-result-container {
+            background: $colorBackground;
+            box-sizing: border-box;
+            position: relative;
+            width: $gridStepX * 2 - 2.4rem;
+            height: 0;
+            overflow: hidden;
+        }
+        .ms-search-result {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+        }
+        .ms-search-result li {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .ms-search-result li a,
+        .ms-search-row {
+            padding: 0.5rem 1.5rem;
+            display: block;
+            position: relative;
+        }
+        .ms-search-result li:hover a {
+            background: #CCC;
+        }
+        .ms-search-result li:hover .ms-search-kind-webSearch::after {
+            content: "Bing search";
+            text-align: right;
+            right: 1.5rem;
+            position: absolute;
+        }
+        .ms-search-result li:hover .ms-search-kind-Interest::after {
+            content: "Topic";
+            text-align: right;
+            right: 1.5rem;
+            position: absolute;
+        }
+        .ms-search-result li:hover .ms-search-kind-Top5K::after {
+            content: "Trending";
+            text-align: right;
+            right: 1.5rem;
+            position: absolute;
+        }
+        .ms-search-result li:hover .ms-search-kind-url::after {
+            content: "Website";
+            text-align: right;
+            right: 1.5rem;
+            position: absolute;
+        }
+        .ms-search-result li a:link,
+        .ms-search-result li a:visited {
+            color: black;
+            text-decoration: none;
+        }
+        .ms-search-result-section {
+            background: #F2F2F2;
+            padding: 0.3rem 1.5rem;
+        }
+    }
+}
+
+header,
+.river {
+    text-align: center;
+}
+
+.river-container {
+    /* columns: 30rem;
+        column-fill: auto;
+        column-gap: 2.4rem;
+        column-rule: none;
+        padding: 2.4rem 2.4rem 0 2.4rem;
+        height: 1400px;*/
+    margin: 0 auto;
+    text-align: $globalLeft;
+    width: 127.2rem;
+    position: relative;
+    &.river-1a {
+        height: 56.1rem;
+    }
+    &.river-1b {
+        height: 37.4rem;
+    }
+    &.river-2a {
+        height: 37.4rem;
+        .card {
+            &:nth-child(2) {
+                left: $gridStepX * 3;
+            }
+        }
+    }
+    &.river-3a {
+        height: 37.4rem;
+        .card {
+            &:nth-child(2) {
+                left: $gridStepX * 2;
+            }
+            &:nth-child(3) {
+                left: $gridStepX * 3;
+            }
+        }
+    }
+    &.river-4a {
+        height: 37.4rem;
+    }
+    &.river-8a {
+        height: 93.5rem;
+        .card {
+            &:nth-child(6) {
+                top: 74.8rem;
+                left: 32.4rem;
+            }
+            &:nth-child(2),
+            &:nth-child(7) {
+                left: 64.8rem;
+            }
+            &:nth-child(3),
+            &:nth-child(8) {
+                left: 97.2rem;
+            }
+            &:nth-child(4),
+            &:nth-child(5) {
+                top: 37.4rem;
+            }
+            &:nth-child(5) {
+                left: 32.4rem;
+            }
+            &:nth-child(7),
+            &:nth-child(8) {
+                top: 56.1rem;
+            }
+        }
+    }
+    &.river-8b {
+        height: 74.8rem;
+        .card {
+            /* TODO write this as a loop */
+            &:nth-child(2) {
+                left: 32.4rem;
+                top: 0;
+            }
+            &:nth-child(3) {
+                left: 64.8rem;
+                top: 0;
+            }
+            &:nth-child(4) {
+                left: 97.2rem;
+                top: 0;
+            }
+            &:nth-child(5) {
+                left: 0rem;
+                top: 37.4rem;
+            }
+            &:nth-child(6) {
+                left: 32.4rem;
+                top: 37.4rem;
+            }
+            &:nth-child(7) {
+                left: 64.8rem;
+                top: 37.4rem;
+            }
+            &:nth-child(8) {
+                left: 97.2rem;
+                top: 37.4rem;
+            }
+        }
+    }
+}
+
+.card {
+    @include baseCard();
+    background: $colorBackground;
+    position: absolute;
+    -webkit-transition: top $cardTransitionInterval ease-out, left $cardTransitionInterval ease-out;
+    transition: top $cardTransitionInterval ease-out, left $cardTransitionInterval ease-out;
+    .card-container {
+        box-sizing: border-box;
+        border: 0.1rem solid $cardOutlineColor;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        &:hover,
+        &:active {
+            outline: none;
+            border: 0.1rem solid $colorActive;
+        }
+        .card-image {
+            width: 100%;
+            height: 17.4rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            -webkit-transition: all $cardTransitionInterval ease-out;
+            transition: all $cardTransitionInterval ease-out;
+        }
+        /* Basic Card Styles */
+        .card-content {
+            padding: 1rem 1.6rem 0rem 1.6rem;
+            overflow: hidden;
+            box-sizing: border-box;
+            .kicker {
+                @include typeKicker();
+                margin-bottom: 0.2rem;
+            }
+            h2 {
+                @include typeHeading();
+                margin: 0;
+                margin-bottom: 1rem;
+                height: 9.6rem;
+                display: inline-block;
+                display: -webkit-box;
+                text-overflow: ellipsis;
+                overflow-y: hidden;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            .card-abstract {
+                @include typeSmall();
+                overflow: hidden;
+            }
+        }
+        .provider {
+            position: absolute;
+            left: 1.6rem;
+            bottom: 1.6rem;
+            @include typeSmall();
+            line-height: 100%;
+            .provider-icon {
+                width: 1.6rem;
+                height: 1.6rem;
+                vertical-align: text-bottom;
+            }
+            .provider-name {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+    /*&:hover {
+        transform: rotate(3deg) translateY(-4.5rem) scale(1.08, 1.08);
+        -webkit-transition: all $cardTransitionInterval ease-out;
+        transition: all $cardTransitionInterval ease-out;
+        transition-delay: 0.2s;
+        box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        .card-container {
+            border: 0.1rem solid $cardOutlineColor;
+        }
+    } */
+    /* Card Template */
+    &.card-1u {
+        /* half */
+        height: 16.3rem;
+        .card-image,
+        .card-abstract {
+            height: 0;
+            opacity: 0;
+        }
+        &:hover,
+        &:focus {
+            h2 {
+                height: 0;
+                margin: 0;
+                padding: 0;
+                -webkit-transition: all 0.2s ease-out;
+                transition: all 0.2s ease-out;
+                -webkit-transition-delay: 0.2s;
+                transition-delay: 0s;
+            }
+            .card-abstract {
+                height: auto;
+                margin-top: 0;
+                opacity: 1;
+                -webkit-transition: opacity 0.2s ease-out;
+                transition: opacity 0.2s ease-out;
+                -webkit-transition-delay: 0.2s;
+                transition-delay: 0.2s;
+            }
+        }
+    }
+    &.card-2u {
+        /* standard */
+        .card-abstract {
+            height: 0;
+            opacity: 0;
+        }
+        &:hover,
+        &:focus {
+            .card-image {
+                height: 5rem;
+                opacity: 0.8;
+                transition-delay: 0.2s;
+            }
+            .card-abstract {
+                height: auto;
+                opacity: 1;
+                -webkit-transition: opacity 0.2s ease-out;
+                transition: opacity 0.2s ease-out;
+                -webkit-transition-delay: 0.2s;
+                transition-delay: 0.2s;
+            }
+        }
+    }
+    &.card-3u {
+        /* tall */
+        height: 53.7rem;
+    }
+    &.card-4u {
+        /* double high */
+        height: 72.4rem;
+    }
+    &.card-wide {
+        width: 62.4rem;
+        background: $colorForeground;
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+            h2 {
+                @include typeTitle();
+                color: $colorBackground;
+                text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+            }
+            .card-abstract {
+                display: none;
+            }
+            .provider {
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &.card-stretch {
+        width: 94.8rem;
+        background: $colorBackground;
+        .card-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            width: $gridStepX;
+            h2 {
+                @include typeTitle();
+                height: auto;
+            }
+            .card-abstract {}
+        }
+        .card-image {
+            width: $gridStepX * 2 - 2.4rem;
+            height: 100%;
+        }
+        .provider {
+            left: $gridStepX * 2 !important;
+        }
+    }
+    &.card-full {
+        width: 127.2rem;
+        background: $colorBackground;
+        .card-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            width: 25%;
+            max-width: 100%;
+            h2 {
+                @include typeTitle();
+                height: auto;
+            }
+            .card-abstract {}
+        }
+        .card-image {
+            width: 75%;
+            height: 100%;
+        }
+        .provider {
+            left: $gridStepX * 3 !important;
+        }
+    }
+    &.card-immersive {
+        width: 127.2rem;
+        height: 53.7rem;
+        background: $colorForeground;
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+            .kicker {
+                color: $colorBackground;
+            }
+            h2 {
+                @include typeTitle();
+                color: $colorBackground;
+                text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+            }
+            .card-abstract {
+                display: none;
+            }
+        }
+        .provider {
+            .provider-name {
+                color: $colorBackground;
+            }
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+        }
+        &:hover,
+        &:focus {
+            .card-image {
+                opacity: 0.8;
+                transition-delay: 0.2s;
+            }
+        }
+    }
+}
+
+
+/* Responsive column breaks */
+
+
+/* 3-Column */
+
+@media only screen and (max-width: 79rem) {
+    header>.container {
+        width: 94.8rem !important;
+        .ms-search-form {
+            left: 16rem;
+        }
+    }
+    .river-container {
+        width: 94.8rem;
+        &.river-1a {
+            height: 56.1rem;
+            .card {
+                width: 94.8rem;
+            }
+        }
+        &.river-1b {
+            height: 37.4rem;
+            .card {
+                width: 94.8rem;
+            }
+        }
+        &.river-2a {
+            height: 37.4rem;
+            .card {
+                &:first-child {
+                    width: 62.4rem;
+                }
+                &:nth-child(2) {
+                    left: $gridStepX * 2;
+                }
+            }
+        }
+        &.river-3a {
+            height: 37.4rem;
+            .card {
+                &:nth-child(2) {
+                    left: $gridStepX * 2;
+                }
+                &:nth-child(3) {
+                    left: $gridStepX * 2;
+                    top: $gridStepY * 1;
+                }
+            }
+        }
+        &.river-4a {
+            height: 37.4rem;
+        }
+        &.river-8a {
+            height: 112.2rem;
+            .card {
+                &:nth-child(3) {
+                    top: 56.1rem;
+                    left: 64.8rem;
+                }
+                &:nth-child(6) {
+                    top: 93.5rem;
+                    left: 0rem;
+                }
+                &:nth-child(7) {
+                    top: $gridStepY * 4;
+                    left: $gridStepX * 1;
+                }
+                &:nth-child(8) {
+                    top: $gridStepY * 5;
+                    left: $gridStepX * 2;
+                }
+            }
+        }
+        &.river-8b {
+            .card {
+                &:nth-child(4) {
+                    top: 18.7rem;
+                    left: 64.8rem;
+                }
+                &:nth-child(5) {
+                    left: 0rem;
+                }
+                &:nth-child(6) {
+                    top: 56.1rem;
+                    left: 0rem;
+                }
+                &:nth-child(7) {
+                    left: 32.4rem;
+                }
+                &:nth-child(8) {
+                    left: 64.8rem;
+                }
+            }
+        }
+    }
+    .card {
+        &.card-1u {}
+        &.card-2u {}
+        &.card-3u {}
+        &.card-4u {}
+        &.card-wide {}
+        &.card-stretch {}
+        &.card-full {
+            .card-content {
+                width: $gridStepX;
+            }
+            .card-image {
+                width: $gridStepX * 2 - 2.4rem;
+            }
+            .provider {
+                left: $gridStepX * 2 - 1rem !important;
+            }
+        }
+        &.card-immersive {}
+    }
+}
+
+
+/* 2-Column */
+
+@media only screen and (max-width: 58.875rem) {
+    header>.container {
+        width: 63.4rem !important;
+        .ms-search-form {
+            width: $gridStepX;
+            #ms-search {
+                width: $gridStepX;
+            }
+            .ms-search-result-container {
+                width: $gridStepX;
+            }
+        }
+    }
+    .river-container {
+        width: 62.4rem;
+        &.river-1a {
+            height: 56.1rem;
+            .card {
+                width: 62.4rem;
+            }
+        }
+        &.river-1b {
+            height: 37.4rem;
+            .card {
+                width: 62.4rem;
+            }
+        }
+        &.river-2a {
+            height: 37.4rem;
+            .card {
+                &:first-child {
+                    width: 30rem;
+                }
+                &:nth-child(2) {
+                    left: $gridStepX * 1;
+                }
+            }
+        }
+        &.river-3a {
+            height: $gridStepY * 3;
+            .card {
+                &:nth-child(2) {
+                    left: $gridStepX * 0;
+                    top: $gridStepY * 2;
+                }
+                &:nth-child(3) {
+                    left: $gridStepX * 1;
+                    top: $gridStepY * 2;
+                }
+            }
+        }
+        &.river-4a {
+            height: 37.4rem;
+        }
+        &.river-8a {
+            height: $gridStepY * 8;
+            .card {
+                &:nth-child(2) {
+                    top: $gridStepY * 2;
+                    left: $gridStepX * 1;
+                }
+                &:nth-child(3) {
+                    top: $gridStepY * 4;
+                    left: $gridStepX * 1;
+                }
+                &:nth-child(5) {
+                    top: $gridStepY * 5;
+                    left: $gridStepX * 0;
+                }
+                &:nth-child(6) {
+                    top: $gridStepY * 7;
+                    left: $gridStepX * 0;
+                }
+                &:nth-child(7) {
+                    top: $gridStepY * 6;
+                    left: $gridStepX * 1;
+                }
+                &:nth-child(8) {
+                    top: $gridStepY * 5;
+                    left: $gridStepX * 1;
+                }
+            }
+        }
+        &.river-8b {
+            height: 114.6rem;
+            .card {
+                &:nth-child(2) {
+                    top: 18.7rem;
+                }
+                &:nth-child(3) {
+                    left: 32.4rem;
+                }
+                &:nth-child(4) {
+                    top: 56.1rem;
+                    left: 32.4rem;
+                }
+                &:nth-child(6) {
+                    top: 93.5rem;
+                }
+                &:nth-child(7) {
+                    left: 0rem;
+                    top: 56.1rem;
+                }
+                &:nth-child(8) {
+                    top: 74.8rem;
+                    left: 32.4rem;
+                }
+            }
+        }
+    }
+    .card {
+        &.card-1u {}
+        &.card-2u {}
+        &.card-3u {}
+        &.card-4u {}
+        &.card-wide {}
+        &.card-stretch {
+            .card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                top: initial;
+                right: initial;
+                width: 100%;
+                max-width: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+                h2 {
+                    @include typeHeading();
+                    color: $colorBackground;
+                    text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+                    overflow: hidden;
+                    margin-bottom: 5.1rem;
+                }
+                .card-abstract {
+                    height: 0;
+                    opacity: 0;
+                }
+            }
+            .provider {
+                left: 1.6rem !important;
+                z-index: 1;
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+            .card-image {
+                width: 100%;
+                height: 100%;
+            }
+            /* &:hover,
+            &:focus {
+                .card-content {
+                    @include feedbackTween(all);
+                    background: $colorBackground;
+                    position: initial;
+                    h2 {
+                        color: $colorForeground;
+                        text-shadow: none;
+                        margin-bottom: 0;
+                    }
+                    .card-abstract {
+                        @include feedbackTween(all);
+                        height: auto;
+                        opacity: 1;
+                    }
+                }
+                .card-image {
+                    height: 5rem;
+                    opacity: 0.8;
+                }
+            } */
+        }
+        &.card-full {
+            .card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                top: initial;
+                right: initial;
+                width: 100%;
+                max-width: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+                h2 {
+                    @include typeTitle();
+                    color: $colorBackground;
+                    text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+                    height: 9.6rem;
+                }
+                .card-abstract {
+                    display: none;
+                }
+            }
+            .provider {
+                left: 1.6rem !important;
+                z-index: 1;
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+            .card-image {
+                width: 100%;
+                height: 100%;
+            }
+            &:hover,
+            &:focus {
+                .card-image {
+                    opacity: 0.8;
+                    transition-delay: 0.2s;
+                }
+            }
+        }
+        &.card-immersive {}
+    }
+}
+
+
+/* 1-Column */
+
+@media only screen and (max-width: 43.75rem) {
+    header>.container {
+        width: 30rem !important;
+        .brand {
+            color: darken($colorBackground, 5%);
+            &::before {
+                color: $colorForeground;
+            }
+        }
+        .ms-search-form {
+            left: 3rem;
+            width: 27rem;
+            #ms-search {
+                width: 27rem;
+                &:focus,
+                &:active {
+                    width: 30rem;
+                    position: absolute;
+                    left: -3rem;
+                }
+            }
+            .ms-search-result-container {
+                width: 30rem;
+                left: -3rem;
+                top: 4.2rem;
+            }
+        }
+    }
+    .river-container {
+        width: 30rem;
+        &.river-1a {
+            height: 56.1rem;
+            .card {
+                width: 30rem;
+            }
+        }
+        &.river-1b {
+            height: $gridStepY * 2;
+            .card {
+                width: 30rem;
+            }
+        }
+        &.river-2a {
+            height: $gridStepY * 4;
+            .card {
+                &:nth-child(2) {
+                    left: $gridStepX * 0;
+                    top: $gridStepY * 2;
+                }
+            }
+        }
+        &.river-3a {
+            height: $gridStepY * 4;
+            .card {
+                &:first-child {
+                    width: 30rem;
+                }
+                &:nth-child(2) {
+                    left: $gridStepX * 0;
+                    top: $gridStepY * 2;
+                }
+                &:nth-child(3) {
+                    left: $gridStepX * 0;
+                    top: $gridStepY * 3;
+                }
+            }
+        }
+        &.river-4a {
+            height: $gridStepY * 2;
+        }
+        &.river-8a {
+            height: $gridStepY * 12;
+            .card {
+                left: 0 !important;
+                &:first-child {
+                    width: 30rem;
+                }
+                &:nth-child(2) {
+                    top: $gridStepY * 2;
+                }
+                &:nth-child(3) {
+                    top: $gridStepY * 4;
+                }
+                &:nth-child(4) {
+                    top: $gridStepY * 5;
+                }
+                &:nth-child(5) {
+                    top: $gridStepY * 7;
+                }
+                &:nth-child(6) {
+                    top: $gridStepY * 9;
+                }
+                &:nth-child(7) {
+                    top: $gridStepY * 10;
+                }
+                &:nth-child(8) {
+                    top: $gridStepY * 11;
+                }
+            }
+        }
+        &.river-8b {
+            height: 149.1rem;
+            .card {
+                left: 0 !important;
+                @for $i from 2 through 8 {
+                    $offsetHeight: ($i - 1) * $gridStepY;
+                    &:nth-child(#{$i}) {
+                        top: $offsetHeight;
+                    }
+                }
+            }
+        }
+    }
+    .card {
+        &.card-1u {}
+        &.card-2u {}
+        &.card-3u {}
+        &.card-4u {}
+        &.card-wide {
+            .card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                top: initial;
+                right: initial;
+                width: 100%;
+                max-width: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+                .kicker {
+                    color: $colorBackground;
+                }
+                h2 {
+                    @include typeHeading();
+                    color: $colorBackground;
+                    text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+                    overflow: hidden;
+                    margin-bottom: 5.1rem;
+                }
+                .card-abstract {
+                    height: 0;
+                    opacity: 0;
+                }
+            }
+            .provider {
+                left: 1.6rem !important;
+                z-index: 1;
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+            .card-image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &.card-stretch {
+            .card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                top: initial;
+                right: initial;
+                width: 100%;
+                max-width: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+                .kicker {
+                    color: $colorBackground;
+                }
+                h2 {
+                    @include typeHeading();
+                    color: $colorBackground;
+                    text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+                    overflow: hidden;
+                    margin-bottom: 5.1rem;
+                }
+                .card-abstract {
+                    height: 0;
+                    opacity: 0;
+                }
+            }
+            .provider {
+                left: 1.6rem !important;
+                z-index: 1;
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+            .card-image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &.card-full {
+            .card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                top: initial;
+                right: initial;
+                width: 100%;
+                max-width: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+                .kicker {
+                    color: $colorBackground;
+                }
+                h2 {
+                    @include typeHeading();
+                    color: $colorBackground;
+                    text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+                    overflow: hidden;
+                    margin-bottom: 5.1rem;
+                }
+                .card-abstract {
+                    height: 0;
+                    opacity: 0;
+                }
+            }
+            .provider {
+                left: 1.6rem !important;
+                z-index: 1;
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+            .card-image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &.card-immersive {
+            .card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                top: initial;
+                right: initial;
+                width: 100%;
+                max-width: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+                h2 {
+                    @include typeHeading();
+                    color: $colorBackground;
+                    text-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.3);
+                    overflow: hidden;
+                    margin-bottom: 5.1rem;
+                }
+                .card-abstract {
+                    height: 0;
+                    opacity: 0;
+                }
+            }
+            .provider {
+                left: 1.6rem !important;
+                z-index: 1;
+                .provider-name {
+                    color: $colorBackground;
+                }
+            }
+            .card-image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
