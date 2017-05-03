@@ -365,6 +365,10 @@ header,
     }
 }
 
+.card-image {
+    background: url("http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAh37V0.img") no-repeat;
+}
+
 .card {
     @include baseCard();
     background: $colorBackground;

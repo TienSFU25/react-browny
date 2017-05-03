@@ -3,9 +3,9 @@ import * as ReactDOM from "react-dom";
 
 import "./css/river.scss";
 
-import { Hello } from "./components/Hello";
+import HomePage from "./components/HomePage";
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
+    <HomePage />,
     document.getElementById("app")
 );
