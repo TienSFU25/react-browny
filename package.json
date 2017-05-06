@@ -27,7 +27,6 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "typescript": "^2.1.4",
-    "webpack": "1.13.0"
+    "typescript": "^2.1.4"
   }
 }

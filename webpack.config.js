@@ -1,5 +1,5 @@
 module.exports = {
-    entry: ['whatwg-fetch', './src/index.tsx'],
+    entry: ['whatwg-fetch', './src/index'],
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist",
@@ -9,23 +9,19 @@ module.exports = {
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
-    devserver: {
-        inline: true
-    },
-
     resolve: {
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
 
     module: {
         loaders: [
-            {test: /\.js$/, include: './src', loaders: ['babel-loader?presets[]=es2015']},
+            {test: /\.js$/, loaders: ['babel-loader?presets[]=es2015']},
             {test: /\.tsx?$/, loader: 'babel-loader?presets[]=react!ts-loader'},
-            {test: /(\.css)$/, loaders: ['style', 'css']},
-            {test: /(\.scss)$/, loaders: ['style', 'css', 'sass']},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-            {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=50000'},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=100000&mimetype=application/octet-stream'}
+            {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']},
+            {test: /(\.scss)$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
+            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+            {test: /\.(woff|woff2)$/, loader: 'url-loader?prefix=font/&limit=50000'},
+            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=100000&mimetype=application/octet-stream'}
         ]
     },
 
