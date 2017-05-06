@@ -1,26 +1,34 @@
 import * as React from 'react';
 
-interface CardProps { 
+interface CardProps {
+    story: any,
     className: string;
 }
 
 export default class Card extends React.Component<CardProps, any> {
     render() {
-        const { className } = this.props;
-        const cardClass = `card card-${className}`
+        const { className, story } = this.props;
+        const cardClass = `card card-${className}`;
+
+        const cardImage = story.images.length ? story.images[0].url : "";
+        const cardTitle = story.title;
+        const abstract = story.abstract.length > 75 ? story.abstract.substr(0.75) : story.abstract;
+        const kicker = story.categories[0].product;
+        const providerUrl = story.provider.logo ? story.provider.logo.url : "";
+        const providerName = story.provider.name;
 
         return (
             <div className={cardClass}>
                 <a className="card-container">
-                    <div className="card-image"></div>
+                    <div className="card-image" style={{backgroundImage: `url(${cardImage})`}}></div>
                         <div className="card-content">
-                        <div className="kicker">Money</div>
-                        <h2>Mega news story about something clicky on 3 lines but it actually runs too long</h2>
-                        <p className="card-abstract">Bacon ipsum dolor amet tenderloin pork brisket burgdoggen short loin meatball tri-tip ham hock cow tongue ball tip pork loin ribeye fatback corned beef.</p>
+                        <div className="kicker">{kicker}</div>
+                        <h2>{cardTitle}</h2>
+                        <p className="card-abstract">{abstract}</p>
                         </div>
                     <div className="provider">
-                        <img className="provider-icon" src="http://placehold.it/16x16" />
-                        <span className="provider-name">Main stream media</span>
+                        <img className="provider-icon" src={providerUrl} />
+                        <span className="provider-name">{providerName}</span>
                     </div>
                 </a>
             </div>

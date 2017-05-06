@@ -136,17 +136,7 @@ header>.container {
     text-align: $globalLeft;
     width: 127.2rem;
     position: relative;
-    /* h1 {
-        @include typeTitle();
-        text-align: left;
-        width: 40%;
-        background: white;
-        height: $gridStepY * 0.4;
-        margin: 0;
-        margin-left: 8%;
-        padding: 2rem 2rem;
-        box-sizing: border-box;
-    } */
+
     .brand {
         @include typeHeading();
         height: 4.2rem;
@@ -263,12 +253,6 @@ header,
 }
 
 .river-container {
-    /* columns: 30rem;
-        column-fill: auto;
-        column-gap: 2.4rem;
-        column-rule: none;
-        padding: 2.4rem 2.4rem 0 2.4rem;
-        height: 1400px;*/
     margin: 0 auto;
     text-align: $globalLeft;
     width: 127.2rem;
