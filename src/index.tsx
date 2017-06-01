@@ -3,7 +3,20 @@ import * as ReactDOM from "react-dom";
 
 import HomePage from "./components/HomePage";
 
-ReactDOM.render(
-    <HomePage />,
-    document.getElementById("app")
-);
+const render = (Component) => {
+    ReactDOM.render(
+        <Component />,
+        document.getElementById("app")
+    );
+};
+
+render(HomePage);
+
+declare var module: any;
+
+// Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept('./components/HomePage', () => {
+    render(HomePage)
+  });
+}
