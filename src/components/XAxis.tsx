@@ -7,7 +7,7 @@ export default class XAxis extends React.Component<any, any> {
 
         let Ticks = data.map((letterAndFrequency, index) => {
             let { letter } = letterAndFrequency;
-            return <Tick letter={letter} translateX={xScale(letter)} key={index} />
+            return <Tick text={letter} transform={`translate(${xScale(letter) + 15.5},0)`} key={index} />
         });
 
         return (

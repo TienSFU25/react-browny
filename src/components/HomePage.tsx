@@ -3,6 +3,7 @@ import Shape from './Shape';
 import Circle from './Circle';
 import Square from './Square';
 import BarGraph from './BarGraph';
+import DynamicBarGraph from './DynamicBarGraph';
 
 import '../styles/barGraph.scss';
 
@@ -18,6 +19,6 @@ export default class HomePage extends React.Component<any, any> {
         //     </svg>
         // );
 
-        return <BarGraph />
+        return <DynamicBarGraph />
     }
 }
