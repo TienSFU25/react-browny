@@ -3,6 +3,8 @@ import Tick from './Tick';
 
 export default class YAxis extends React.Component<any, any> {
     render() {
+        console.log(`rerendering y axis`);
+
         const { maxFreq, yScale, data } = this.props;
         const existingPercentages = {};
 

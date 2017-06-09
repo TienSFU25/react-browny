@@ -3,6 +3,7 @@ import Tick from './Tick';
 
 export default class XAxis extends React.Component<any, any> {
     render() {
+        console.log(`rerendering x axis`);
         const { xScale, data, height } = this.props;
 
         let Ticks = data.map((letterAndFrequency, index) => {
