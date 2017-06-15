@@ -35,10 +35,7 @@ module.exports = {
             {test: /\.js$/, loaders: ['babel-loader?presets[]=es2015']},
             {test: /\.tsx?$/, loader: 'babel-loader?presets[]=react!ts-loader'},
             {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']},
-            {test: /(\.scss)$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
-            {test: /\.(woff|woff2)$/, loader: 'url-loader?prefix=font/&limit=50000'},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=100000&mimetype=application/octet-stream'}
+            {test: /(\.scss)$/, loaders: ['style-loader', 'css-loader', 'sass-loader']}
         ]
     },
 

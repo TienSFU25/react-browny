@@ -1,8 +1,12 @@
 import * as React from 'react';
 
 const Messages = [
-    "foo",
-    "bar"
+    "Exercise is good",
+    "Vegetables is good",
+    "Prime is good",
+    "Life is good",
+    "Cheese is good",
+    "YOLOOOOOOOOOOOOOOOO"
 ];
 
 export default function(WrappedComponnent) {

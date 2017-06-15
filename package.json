@@ -1,8 +1,11 @@
 {
-  "name": "neu",
+  "name": "react-samples",
   "version": "1.0.0",
   "description": "",
   "author": "Tien Vu",
+  "scripts": {
+    "start": "npm i && node node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+  },
   "license": "ISC",
   "dependencies": {
     "@types/react": "^0.14.55",
@@ -14,14 +17,11 @@
     "babel-preset-react-hmre": "1.1.1",
     "css-loader": "^0.28.1",
     "d3": "^4.9.1",
-    "file-loader": "^0.11.1",
-    "jquery": "^3.2.1",
     "node-sass": "^4.5.2",
     "raw-loader": "^0.5.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router-dom": "^4.1.1",
-    "react-virtualized": "^9.7.4",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",
     "ts-loader": "^2.0.3",

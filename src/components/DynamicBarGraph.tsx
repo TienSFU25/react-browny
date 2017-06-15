@@ -9,15 +9,15 @@ export default class DynamicBarGraph extends React.Component<any, any> {
     constructor(props) {
         super(props);
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        const margin = {top: 20, right: 20, bottom: 30, left: 40},
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        const defaultText = "Please write an essay about your favorite DOM element.";
-        var freqs = this._calcFrequency(defaultText);
+        const defaultText = "Thou shall not check in bad things that destroy the universe";
+        const freqs = this._calcFrequency(defaultText);
 
-        var xScale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
-        var yScale = d3.scaleLinear().rangeRound([height, 0]);
+        const xScale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
+        const yScale = d3.scaleLinear().rangeRound([height, 0]);
 
         this._updateDomains(xScale, yScale, freqs);
 
@@ -77,7 +77,7 @@ export default class DynamicBarGraph extends React.Component<any, any> {
     }
 
     _genArray = (n) => {
-        var arr = [];
+        const arr = [];
 
         for (let i = 0; i < n; i++) {
             arr.push(i);
